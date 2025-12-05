@@ -164,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 30),
 
                 /// ================== INPUT ==================
-                TextFormField(
+                TextFormField(style: const TextStyle(color: Colors.black),
                   controller: controller,
                   decoration: InputDecoration(
                     fillColor: Colors.white,
@@ -190,13 +190,15 @@ class _HomePageState extends State<HomePage> {
                       double amount = double.parse(controller.text);
 
                       double fromRate = rates[
-                          Get.find<ControllerState>().simplevaluefrom.value];
+                          Get.find<ControllerState>().simplevaluefrom.value].toDouble();
+                          print("========= FROM RATE: $fromRate ===========");
 
                       double toRate = rates[
-                          Get.find<ControllerState>().simplevalueto.value];
+                          Get.find<ControllerState>().simplevalueto.value].toDouble();
 
                       setState(() {
                         result = (toRate / fromRate) * amount;
+                        Get.find< ControllerState>().amount.value = result;
                       });
 
                       print("==== RESULT: $result ====");
@@ -210,14 +212,14 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 20),
 
                 /// ================== RESULT ==================
-                Text(
-                  "Result: $result",
+                Obx(() => Text(
+                  "Result: ${Get.find<ControllerState>().amount.value.toStringAsFixed(2)} ",
                   style: TextStyle(
                     color: Theme.of(context).textTheme.bodyLarge?.color,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
-                ),
+                ),)
               ],
             ),
           ),
