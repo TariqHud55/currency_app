@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        title: const Text("Currency App"),
+        title: const Text("تطبيق تحويل العملات"),
       ),
       body: Center(
         child: Padding(
@@ -161,10 +161,10 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 40),
 
                 /// ================== INPUT ==================
-                TextFormField(style: const TextStyle(color: Colors.black),
+                TextFormField(textAlign: TextAlign.center,style: const TextStyle(color: Colors.black),
                   controller: controller,
                   decoration: InputDecoration(
                     fillColor: Colors.white,
@@ -177,10 +177,10 @@ class _HomePageState extends State<HomePage> {
                   keyboardType: TextInputType.number,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
 
                 /// ================== BUTTON ==================
-                buildButton("Convert", () async {
+                buildButton("اضغط للتحويل", () async {
                   await apiSettings.getinformation();
 
                   Map rates = Get.find<ControllerState>().rates;
@@ -209,11 +209,11 @@ class _HomePageState extends State<HomePage> {
                   }
                 }),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
 
                 /// ================== RESULT ==================
                 Obx(() => Text(
-                  "Result: ${Get.find<ControllerState>().amount.value.toStringAsFixed(2)} ",
+                  "Result: ${Get.find<ControllerState>().amount.value.toStringAsFixed(2)} : ${Get.find<ControllerState>().simplevalueto.value}",
                   style: TextStyle(
                     color: Theme.of(context).textTheme.bodyLarge?.color,
                     fontSize: 20,
